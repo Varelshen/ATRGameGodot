@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://EnemiesRocksSkin.gd" type="Script" id=2]
+[ext_resource path="res://InGameAssets/Rocks/1rock.png" type="Texture" id=3]
+
+[node name="enemys" type="KinematicBody2D"]
+position = Vector2( 398.808, 200.818 )
+collision_layer = 2
+
+[node name="EnemiesRocksSkin" type="Sprite" parent="."]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
+polygon = PoolVector2Array( -210.059, 121.07, -47.5344, 162.692, 202.199, 134.944, 293.371, 79.4476, 299.318, 14.0412, 224.001, -112.808, 3.99792, -184.16, -225.915, -190.106, -301.232, -91.0054, -291.322, 55.6635 )

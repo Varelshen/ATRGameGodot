@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MediumSpaceFlightGameplay.wav-a945b13a31ae72741639de1f1f34d2ce.sample"
+
+[deps]
+
+source_file="res://Audios/MediumSpaceFlightGameplay.wav"
+dest_files=[ "res://.import/MediumSpaceFlightGameplay.wav-a945b13a31ae72741639de1f1f34d2ce.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

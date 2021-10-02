@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://InGameAssets/Rocks/1rock.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+
+func _on_PruebaEnemy_body_entered(body):
+	visible = false
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Sprite
+
+var bullet_tex1 = preload(\"res://InGameAssets/Rocks/1rock.png\")
+var bullet_tex2 = preload(\"res://InGameAssets/Rocks/2rock.png\")
+var bullet_tex3 = preload(\"res://InGameAssets/Rocks/3rock.png\")
+
+func _ready():
+	
+	var random_generator = RandomNumberGenerator.new()
+	random_generator.randomize()
+	var random_value: int = random_generator.randf_range(1,4)
+	if random_value == 1:
+		texture = load(\"res://InGameAssets/Rocks/1rock.png\")
+	
+	elif random_value == 2:
+		texture = load(\"res://InGameAssets/Rocks/2rock.png\")
+
+	elif random_value == 3:
+		texture = load(\"res://InGameAssets/Rocks/3rock.png\")
+
+	else:
+		texture = load(\"res://InGameAssets/Rocks/4rock.png\")
+"
+
+[node name="PruebaEnemy" type="Area2D"]
+script = SubResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 16.9161, 50.8917, 61.9433, 38.7079, 87.3704, 9.57266, 61.4136, -34.9248, 7.38098, -52.9357, -65.722, -57.7032, -90.6194, -24.8599, -83.7328, 14.3402, -34.4678, 49.3025 )
+
+[node name="RockCopia" type="Sprite" parent="."]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+script = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_PruebaEnemy_body_entered"]

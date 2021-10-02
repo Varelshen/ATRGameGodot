@@ -1,0 +1,367 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://HUDinGame.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LowerLayer.gd" type="Script" id=2]
+[ext_resource path="res://MediumLayer.gd" type="Script" id=3]
+[ext_resource path="res://MainScreenUiResources/FondoTotal.jpg" type="Texture" id=4]
+[ext_resource path="res://InGameAssets/BackBlackHole/LowerLayer.png" type="Texture" id=5]
+[ext_resource path="res://InGameAssets/BackBlackHole/MediumLayer.png" type="Texture" id=6]
+[ext_resource path="res://InGameAssets/BackBlackHole/SuperiorLayer.png" type="Texture" id=7]
+[ext_resource path="res://SuperiorLayer.gd" type="Script" id=8]
+[ext_resource path="res://Audios/MediumSpaceFlightGameplay.wav" type="AudioStream" id=9]
+[ext_resource path="res://SonidoMedioGameplay.gd" type="Script" id=10]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Audios/CloseBlackHole.wav" type="AudioStream" id=12]
+[ext_resource path="res://AudioStreamPlayer2D.gd" type="Script" id=13]
+[ext_resource path="res://InGameAssets/HudInGame/PauseMenu.png" type="Texture" id=14]
+[ext_resource path="res://Pause.gd" type="Script" id=15]
+[ext_resource path="res://TextureWithUsefullcolors/ButtonPressed.png" type="Texture" id=16]
+[ext_resource path="res://EnemiesRocks.tscn" type="PackedScene" id=17]
+[ext_resource path="res://EnemiesMovement.gd" type="Script" id=18]
+[ext_resource path="res://UiContadores.gd" type="Script" id=19]
+[ext_resource path="res://Timer.gd" type="Script" id=20]
+[ext_resource path="res://InGameAssets/Aceleradores.png" type="Texture" id=21]
+[ext_resource path="res://yearscore.gd" type="Script" id=22]
+[ext_resource path="res://ScoreDetectorNodes.tscn" type="PackedScene" id=23]
+[ext_resource path="res://aceleradoresrotation.gd" type="Script" id=24]
+[ext_resource path="res://InGameAssets/HudInGame/FillObjectiveBarFixed.png" type="Texture" id=25]
+[ext_resource path="res://CureProgress.gd" type="Script" id=26]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1149.46, 998.932 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 128.88, 16.0446 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="FondoTotalAndColitions" type="Sprite" parent="."]
+position = Vector2( 2944, 462.524 )
+scale = Vector2( 97.9404, 116.19 )
+texture = ExtResource( 4 )
+
+[node name="FondoTotal" type="StaticBody2D" parent="FondoTotalAndColitions"]
+position = Vector2( 340.655, -1.75381 )
+scale = Vector2( 0.132123, 0.516817 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FondoTotalAndColitions/FondoTotal"]
+shape = SubResource( 1 )
+
+[node name="FondoTotal2" type="StaticBody2D" parent="FondoTotalAndColitions"]
+position = Vector2( -51.4163, -241.601 )
+rotation = -1.57079
+scale = Vector2( 0.0946421, 0.721493 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FondoTotalAndColitions/FondoTotal2"]
+shape = SubResource( 1 )
+
+[node name="FondoTotal3" type="StaticBody2D" parent="FondoTotalAndColitions"]
+position = Vector2( -34.2454, 250.393 )
+rotation = -1.57079
+scale = Vector2( 0.0946421, 0.721493 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FondoTotalAndColitions/FondoTotal3"]
+shape = SubResource( 1 )
+
+[node name="FondoTotal4" type="StaticBody2D" parent="FondoTotalAndColitions"]
+position = Vector2( -394.836, -3.80381 )
+scale = Vector2( 0.132123, 0.516816 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FondoTotalAndColitions/FondoTotal4"]
+shape = SubResource( 1 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+collision_layer = 4
+
+[node name="BlackHole" type="Sprite" parent="KinematicBody2D"]
+scale = Vector2( 3.03938, 3.03938 )
+texture = ExtResource( 5 )
+script = ExtResource( 2 )
+
+[node name="MediumLayer" type="Sprite" parent="KinematicBody2D/BlackHole"]
+texture = ExtResource( 6 )
+script = ExtResource( 3 )
+
+[node name="SuperiorLayer" type="Sprite" parent="KinematicBody2D/BlackHole"]
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
+
+[node name="PointCenterBlackHole" type="Sprite" parent="KinematicBody2D/BlackHole"]
+visible = false
+scale = Vector2( -0.0959608, 0.0932837 )
+texture = ExtResource( 6 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="KinematicBody2D/BlackHole/PointCenterBlackHole"]
+stream = ExtResource( 12 )
+volume_db = -5.592
+autoplay = true
+max_distance = 1448.0
+attenuation = 2.46229
+script = ExtResource( 13 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D"]
+light_mask = 0
+position = Vector2( 124.591, -211.428 )
+scale = Vector2( 3.86947, 3.96468 )
+polygon = PoolVector2Array( 15.1267, -0.376938, 29.0292, 16.6249, 38.1349, 44.4977, 36.5248, 72.1588, 24.4764, 95.396, 3.19843, 112.388, -29.251, 120.948, -63.1922, 114.591, -85.3165, 96.2368, -98.0361, 69.5429, -98.45, 40.4582, -89.3444, 15.817, -74.0303, 0.870628, -54.5773, -10.844, -18.5686, -12.8638 )
+
+[node name="enemys" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys2" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys3" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys4" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys5" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys6" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys7" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys8" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys9" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys10" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys11" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys12" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys13" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys14" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys15" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys16" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys17" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="enemys18" parent="." instance=ExtResource( 17 )]
+position = Vector2( -1412.92, 1673.34 )
+scale = Vector2( 0.911815, 0.911815 )
+script = ExtResource( 18 )
+
+[node name="ShipPlayer" parent="." instance=ExtResource( 11 )]
+position = Vector2( -1692.82, 1924.79 )
+collision_mask = 6
+
+[node name="Camera2D" type="Camera2D" parent="ShipPlayer"]
+scale = Vector2( 1, 1 )
+current = true
+smoothing_speed = 10.0
+
+[node name="ScoreDetectorNodes" parent="ShipPlayer" instance=ExtResource( 23 )]
+visible = false
+scale = Vector2( 0.16, 0.16 )
+
+[node name="UiContadores" type="CanvasLayer" parent="."]
+script = ExtResource( 19 )
+
+[node name="Control" parent="UiContadores" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="Desarrollo" type="Label" parent="UiContadores"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -307.968
+margin_top = -90.4162
+margin_right = 163.828
+margin_bottom = -56.4162
+rect_scale = Vector2( 1.3, 1.3 )
+text = "Cure Development"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2060" type="Label" parent="UiContadores"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 537.654
+margin_top = -63.0609
+margin_right = 657.654
+margin_bottom = -29.0609
+rect_scale = Vector2( 1.3, 1.3 )
+text = "2060"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2061" type="Label" parent="UiContadores"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -693.009
+margin_top = -62.6277
+margin_right = -573.009
+margin_bottom = -28.6277
+rect_scale = Vector2( 1.3, 1.3 )
+text = "2060"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Label" parent="UiContadores"]
+anchor_right = 0.2
+margin_left = 1133.0
+margin_top = 62.0
+margin_right = 919.8
+margin_bottom = 106.0
+rect_scale = Vector2( 2, 2 )
+size_flags_horizontal = 0
+text = "1234567"
+valign = 1
+percent_visible = 0.744
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="year" type="Label" parent="UiContadores"]
+margin_left = -26.5156
+margin_top = 31.6209
+margin_right = 120.484
+margin_bottom = 84.6209
+rect_scale = Vector2( 3, 3 )
+text = "2020"
+align = 1
+valign = 1
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="UiContadores"]
+position = Vector2( 684.49, 384 )
+scale = Vector2( 1e-05, 1 )
+z_as_relative = false
+texture = ExtResource( 25 )
+script = ExtResource( 26 )
+
+[node name="SonidoMedioGameplay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -26.264
+autoplay = true
+script = ExtResource( 10 )
+
+[node name="aceleradores" type="Area2D" parent="."]
+scale = Vector2( 1, 1 )
+collision_layer = 8
+script = ExtResource( 24 )
+
+[node name="Sprite" type="Sprite" parent="aceleradores"]
+scale = Vector2( 2.7241, 2.7241 )
+texture = ExtResource( 21 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="aceleradores"]
+scale = Vector2( 2.7241, 2.7241 )
+shape = SubResource( 2 )
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+layer = 50
+
+[node name="Pause" type="Control" parent="PauseMenu"]
+pause_mode = 2
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenu" type="Sprite" parent="PauseMenu/Pause"]
+position = Vector2( 683, 384 )
+texture = ExtResource( 14 )
+
+[node name="MainMenu" type="TextureButton" parent="PauseMenu/Pause/PauseMenu"]
+margin_left = -188.0
+margin_top = 21.0
+margin_right = 191.0
+margin_bottom = 96.0
+texture_pressed = ExtResource( 16 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeGame" type="TextureButton" parent="PauseMenu/Pause/PauseMenu"]
+margin_left = -188.0
+margin_top = -86.0
+margin_right = 191.0
+margin_bottom = -11.0
+texture_pressed = ExtResource( 16 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="finished" from="KinematicBody2D/BlackHole/PointCenterBlackHole/AudioStreamPlayer2D" to="KinematicBody2D/BlackHole/PointCenterBlackHole/AudioStreamPlayer2D" method="_on_AudioStreamPlayer2D_finished"]
+[connection signal="finished" from="SonidoMedioGameplay" to="SonidoMedioGameplay" method="_on_SonidoMedioGameplay_finished"]
+[connection signal="body_entered" from="aceleradores" to="UiContadores/year" method="_on_aceleradores_body_entered"]
+[connection signal="pressed" from="PauseMenu/Pause/PauseMenu/MainMenu" to="PauseMenu/Pause" method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause/PauseMenu/ResumeGame" to="PauseMenu/Pause" method="_on_ResumeGame_pressed"]

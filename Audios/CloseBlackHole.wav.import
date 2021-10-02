@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/CloseBlackHole.wav-2c1435923a2480ebd44641ccdca57388.sample"
+
+[deps]
+
+source_file="res://Audios/CloseBlackHole.wav"
+dest_files=[ "res://.import/CloseBlackHole.wav-2c1435923a2480ebd44641ccdca57388.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

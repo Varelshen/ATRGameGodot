@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://MainScreenUiResources/RuidoEspacialStarsModified.png" type="Texture" id=2]
+[ext_resource path="res://MainScreenUiResources/FondoTotal.jpg" type="Texture" id=3]
+[ext_resource path="res://MainScreenUiResources/LastOneStaticUi.png" type="Texture" id=4]
+[ext_resource path="res://MainScreenUiResources/ACELEROMETERiMAGE.png" type="Texture" id=5]
+[ext_resource path="res://MainScreenUiResources/MainMenuBlackHole.webm" type="VideoStream" id=6]
+[ext_resource path="res://VideoPlayer.gd" type="Script" id=7]
+[ext_resource path="res://ACELEROMETERiMAGE.gd" type="Script" id=8]
+[ext_resource path="res://TextureWithUsefullcolors/ButtonPressed.png" type="Texture" id=9]
+[ext_resource path="res://Audios/MainMenu.wav" type="AudioStream" id=10]
+[ext_resource path="res://AudioStreamPlayer.gd" type="Script" id=11]
+[ext_resource path="res://MenuMain.gd" type="Script" id=12]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FondoTotal" type="Sprite" parent="."]
+position = Vector2( 683, 384 )
+texture = ExtResource( 3 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="FondoTotal"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -683.0
+margin_top = -384.0
+margin_right = -683.0
+margin_bottom = -384.0
+stream = ExtResource( 6 )
+autoplay = true
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RuidoEspacialStarsModified" type="Sprite" parent="FondoTotal"]
+texture = ExtResource( 2 )
+
+[node name="ACELEROMETERiMAGE" type="Sprite" parent="FondoTotal"]
+position = Vector2( 221.873, -10.0132 )
+texture = ExtResource( 5 )
+script = ExtResource( 8 )
+
+[node name="LastOneStaticUi" type="Sprite" parent="FondoTotal"]
+texture = ExtResource( 4 )
+
+[node name="PlayButton" type="TextureButton" parent="."]
+margin_left = 49.0
+margin_top = 300.0
+margin_right = 360.0
+margin_bottom = 355.0
+texture_pressed = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="TextureButton" parent="."]
+margin_left = 46.5
+margin_top = 393.0
+margin_right = 357.5
+margin_bottom = 448.0
+texture_pressed = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -13.657
+autoplay = true
+script = ExtResource( 11 )
+[connection signal="finished" from="FondoTotal/VideoPlayer" to="FondoTotal/VideoPlayer" method="_on_VideoPlayer_finished"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_AudioStreamPlayer_finished"]
